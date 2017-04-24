@@ -73,13 +73,21 @@ def display(values):
     return
 
 def find_naked_twins(values):
-    twins_boxes = []
+    """Loop through all the boxed in grid and determin if they are twins within each box's peers.
+    Args:
+        values(dict): a dictionary of the form {'box_name': '123456789', ...}
+
+    Returns:
+        a dictionary of the form {'naked_twin_box_name': [array of the unit the twin was found in]}
+    """
     result = {}
     for box in BOXES:
         for unit in UNITS[box]:
             for peer in unit:
-                if values[box] == values[peer] and box not in twins_boxes and len(values[box]) == 2 and box != peer:
-                    twins_boxes.append(box)
+                # Identify a twin if it is not the same box and
+                # it is only 2 digits long and
+                # the digits match
+                if values[box] == values[peer] and len(values[box]) == 2 and box != peer:
                     result[box] = unit
     return result
 
@@ -132,7 +140,7 @@ def reduce_puzzle(values):
         # Use the Only Choice Strategy
         values = only_choice(values)
         # Use the Naked twins Strategy
-        # values = naked_twins(values)
+        values = naked_twins(values)
         # Check how many boxes have a determined value, to compare
         solved_values_after = len([box for box in values.keys() if len(values[box]) == 1])
         # If no new values were added, stop the loop.

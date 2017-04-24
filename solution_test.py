@@ -71,15 +71,8 @@ class TestNakedTwins(unittest.TestCase):
     ]
 
     def test_naked_twins(self):
-        solution.display(self.before_naked_twins_1)
-        print("====================================")
-        for sol in self.possible_solutions_1:
-            solution.display(sol)
-            print("====================================")
-        solution.display(solution.naked_twins(self.before_naked_twins_1))
         self.assertTrue(solution.naked_twins(self.before_naked_twins_1) in self.possible_solutions_1,
                         "Your naked_twins function produced an unexpected board.")
-        solution.display(solution.naked_twins(self.before_naked_twins_1))
 
     def test_naked_twins2(self):
         self.assertTrue(solution.naked_twins(self.before_naked_twins_2) in self.possible_solutions_2,
@@ -103,9 +96,9 @@ class TestDiagonalSudoku(unittest.TestCase):
                           'H9': '4', 'H2': '3', 'H3': '5', 'H1': '9', 'H6': '1', 'H7': '7', 'H4': '2', 'H5': '8',
                           'D8': '9', 'D9': '2', 'D6': '8', 'D7': '1', 'D4': '4', 'D5': '3', 'D2': '7', 'D3': '6',
                           'D1': '5'}
-   
-    # def test_solve(self):
-    #     self.assertEqual(solution.solve(self.diagonal_grid), self.solved_diag_sudoku)
+
+    def test_solve(self):
+        self.assertEqual(solution.solve(self.diagonal_grid), self.solved_diag_sudoku)
 
 if __name__ == '__main__':
     unittest.main()

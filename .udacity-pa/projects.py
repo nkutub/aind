@@ -8,7 +8,6 @@ projects = ['sudoku']
 
 def submit(args):
   filenames = ['solution.py', 'README.md']
-
   udacity.submit(nanodegree, projects[0], filenames, 
                  environment = args.environment,
-                 jwt_path = args.jwt_path)
+                 jwt_path = "/Users/naderkutub/nkconsultingGD/udacity/AIND/sudoku/AIND-Sudoku/.udacity-pa/jwt")

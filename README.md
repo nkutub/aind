@@ -3,11 +3,11 @@
 
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+A: The Naked Twins is just another step during each recursion that will allow us to make more eliminations across peers for each box. This will add more eliminations with will yield a faster path through the search to the solution. Each iteration may reduce a box from a set of digits more than two down to a two count using either the elimination or the only choice steps. This, in turn, my create new naked twins in the same recursion step which can be used to eliminate more digits from peers. 
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+A: This was the simpler of the challenges. All we needed to do was add more units to the unit lists. This, in turn, resulted in more peers to be considered during each of the eliminate, only choice and naked twin strategies. 
 
 ### Install
 
