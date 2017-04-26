@@ -139,7 +139,7 @@ def only_choice(values):
     Returns:
         the values dictionary with the only choice box cleansed from other shared digits in peer group.
     """
-    # Loop through all units 
+    # Loop through all units
     for unit in UNIT_LIST:
         # For each possible value in a box
         for digit in '123456789':
@@ -152,7 +152,7 @@ def only_choice(values):
     return values
 
 def reduce_puzzle(values):
-     """Eliminate values using the only choice strategy.
+    """Eliminate values using the only choice strategy.
     Args:
         values(dict): a dictionary of the form {'box_name': '123456789', ...}
 
