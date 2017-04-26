@@ -106,6 +106,7 @@ def naked_twins(values):
     for naked_twin_box in naked_twin_boxes.keys():
         naked_twin_box_unit = naked_twin_boxes[naked_twin_box]
         digits = values[naked_twin_box]
+        # loop through each digit found in twin box and eliminate it from peers
         for digit in digits:
             for peer in naked_twin_box_unit:
                 if values[peer] != values[naked_twin_box] and len(values[peer]) > 1:
@@ -114,7 +115,16 @@ def naked_twins(values):
 
 
 def eliminate(values):
+    """Eliminate values using boxes with single values to eliminate its digit from other peer boxes.
+    Args:
+        values(dict): a dictionary of the form {'box_name': '123456789', ...}
+
+    Returns:
+        the values dictionary with all peers cleand for digits for single digit boxes in peer group.
+    """
+    # Find all the solved boxes
     solved_values = [box for box in values.keys() if len(values[box]) == 1]
+    # For each of the solved boxes, eliminat its digit form all its peer boxes
     for box in solved_values:
         digit = values[box]
         for peer in PEERS[box]:
@@ -122,14 +132,33 @@ def eliminate(values):
     return values
 
 def only_choice(values):
+    """Eliminate values using the only choice strategy.
+    Args:
+        values(dict): a dictionary of the form {'box_name': '123456789', ...}
+
+    Returns:
+        the values dictionary with the only choice box cleansed from other shared digits in peer group.
+    """
+    # Loop through all units 
     for unit in UNIT_LIST:
+        # For each possible value in a box
         for digit in '123456789':
+            # Find all the peer boxes in the unit that contain the digit
             dplaces = [box for box in unit if digit in values[box]]
+            # If the list of peer boxes in the unit that contain the digit is only one box
             if len(dplaces) == 1:
+                # Asign the digit to the single box found in the peer group containing that digit
                 values = assign_value(values, dplaces[0], digit)
     return values
 
 def reduce_puzzle(values):
+     """Eliminate values using the only choice strategy.
+    Args:
+        values(dict): a dictionary of the form {'box_name': '123456789', ...}
+
+    Returns:
+        the values dictionary with digits eliminated using Eliminate, Only Choice and Naked Twin strategies.
+    """
     stalled = False
     while not stalled:
         # Check how many boxes have a determined value

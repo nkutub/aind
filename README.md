@@ -3,7 +3,11 @@
 
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
-A: The Naked Twins is just another step during each recursion that will allow us to make more eliminations across peers for each box. This will add more eliminations with will yield a faster path through the search to the solution. Each iteration may reduce a box from a set of digits more than two down to a two count using either the elimination or the only choice steps. This, in turn, my create new naked twins in the same recursion step which can be used to eliminate more digits from peers. 
+A: Constraint propagation is the process of eliminating all values not possible in the solution space of a value based on information gathered from related values then repeating the process if the resulting change provides new information to allow for more reductions. In the case of the sudoku puzzle, the value is the digits in a box and the solution space is '123456789' and related values are digits in other boxes in the list of peers for each box. 
+
+To apply the Naked Twin strategy to constraint propagation, we use the reduction process dictated by the Naked Twin strategy in each iteration of the constraint propagation in addition to the eliminate and only choice strategies. 
+
+The Naked Twin Strategy dictates that if two boxes, in the same peer group, contain the same two digits, only those two boxes, naked twins, are allowed to have either the first or second digit assigned to them in the final result. This logic, in turn, dictates that all other boxes in the same peer group may NOT contain either of the two digits assigned to the naked twin boxes. This allows us to eliminate the same two digits from all other boxes in the peer group during each iteration. 
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
